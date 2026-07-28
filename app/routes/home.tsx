@@ -15,38 +15,38 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-//   const navigate = useNavigate();
-//   const [projects, setProjects] = useState<DesignItem[]>([]);
+  const navigate = useNavigate();
+  const [projects, setProjects] = useState<DesignItem[]>([]);
 
-//   const handleUploadComplete  = async (base64Image: string) => {
-//     const newId = Date.now().toString();
-//     const name = `Residence ${newId}`;
+  const handleUploadComplete  = async (base64Image: string) => {
+    const newId = Date.now().toString();
+    const name = `Residence ${newId}`;
 
-//     const newItem = {
-//       id: newId, name, sourceImage: base64Image,
-//       renderedImage: undefined,
-//       timestamp: Date.now()
-//     }
+    const newItem = {
+      id: newId, name, sourceImage: base64Image,
+      renderedImage: undefined,
+      timestamp: Date.now()
+    }
 
-//     const saved = await createProject({item: newItem, visibility: 'private'});
+    const saved = await createProject({item: newItem, visibility: 'private'});
 
-//     if(!saved) {
-//       console.error("failed to create project");
-//       return false;
-//     }
+    if(!saved) {
+      console.error("failed to create project");
+      return false;
+    }
 
-//     setProjects((prev) => [saved, ... prev]);
+    setProjects((prev) => [saved, ... prev]);
 
-//     navigate(`/visualizer/${newId}`, {
-//       state: {
-//         initialImage: saved.sourceImage,
-//         initialRendered: saved.renderedImage || null,
-//         name
-//       }
-//     });
+    navigate(`/visualizer/${newId}`, {
+      state: {
+        initialImage: saved.sourceImage,
+        initialRendered: saved.renderedImage || null,
+        name
+      }
+    });
 
-//     return true;
-//   }
+    return true;
+  }
 
   return (
     <div className="home">
