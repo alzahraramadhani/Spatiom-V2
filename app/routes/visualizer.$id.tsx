@@ -38,10 +38,10 @@ const VisualizerId = () => {
   useEffect(() => {
     if (!initialImage || hasInitialGenerated.current) return;
 
-    if(initialRender) {
+    if (initialRender) {
       setCurrentImage(initialRender);
       hasInitialGenerated.current = true;
-      return
+      return;
     }
 
     hasInitialGenerated.current = true;
@@ -56,7 +56,8 @@ const VisualizerId = () => {
 
             <span className="name">Spatiom</span>
           </div>
-          <Button variant='ghost' size='sm' onClick={handleBack} className='exit'><X className="icon"/>
+          <Button variant='ghost' size='sm' onClick={handleBack} className='exit'>
+            <X className="icon"/>
             Exit Editor
           </Button>
         </nav>
