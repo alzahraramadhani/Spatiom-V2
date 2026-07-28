@@ -120,4 +120,4 @@ const VisualizerId = () => {
   )
 }
 
-export default VisualizerId
+export default VisualizerId 
