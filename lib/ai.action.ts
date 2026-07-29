@@ -24,6 +24,16 @@ export const fetchAsDataUrl = async (url: string): Promise<string> => {
   });
 };
 
+const getImageDimensions = (base64Data: string): Promise<{ w: number; h: number }> => {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      resolve({ w: img.width, h: img.height });
+    };
+    img.src = base64Data;
+  });
+};
+
 export const generate3DView = async ({sourceImage} : Generate3DViewParams) => {
   const dataUrl = sourceImage.startsWith('data:')
     ? sourceImage
@@ -34,12 +44,26 @@ export const generate3DView = async ({sourceImage} : Generate3DViewParams) => {
 
   if (!mimeType || !base64Data) throw new Error('invalid source image payload');
 
+  // 1. Dapatkan ukuran asli gambar denah
+  const dimensions = await getImageDimensions(dataUrl);
+
+  // 2. Kirim ratio yang sesuai ke AI (atau gunakan batas max 1024)
+  const maxDim = 1024;
+  const isPortrait = dimensions.h > dimensions.w;
+  
+  const targetWidth = isPortrait 
+    ? Math.round(maxDim * (dimensions.w / dimensions.h)) 
+    : maxDim;
+  const targetHeight = isPortrait 
+    ? maxDim 
+    : Math.round(maxDim * (dimensions.h / dimensions.w));
+
   const response = await puter.ai.txt2img(SPATIOM_RENDER_PROMPT, {
     provider: "gemini",
     model: "gemini-2.5-flash-image-preview",
     input_image: base64Data,
     input_image_mime_type: mimeType,
-    ratio:{ w: 1024, h: 1024},
+    ratio: { w: targetWidth, h: targetHeight },
   })
 
   const rawImageUrl = (response as HTMLImageElement).src ?? null;
