@@ -2,9 +2,9 @@ export const PUTER_WORKER_URL = import.meta.env.VITE_PUTER_WORKER_URL || "";
 
 // Storage Paths
 export const STORAGE_PATHS = {
-    ROOT: "roomify",
-    SOURCES: "roomify/sources",
-    RENDERS: "roomify/renders",
+    ROOT: "spatiom",
+    SOURCES: "spatiom/sources",
+    RENDERS: "spatiom/renders",
 } as const;
 
 // Timing Constants (in milliseconds)

@@ -14,7 +14,8 @@ const Upload = ({onComplete}: UploadProps) => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const {isSignedIn} = useOutletContext<AuthContext>();
+  const context = useOutletContext<AuthContext | null>();
+  const isSignedIn = context?.isSignedIn ?? false;
 
   useEffect(() => {
     return () => {
@@ -129,7 +130,7 @@ const Upload = ({onComplete}: UploadProps) => {
         <div className='upload-status'>
           <div className='status-content'>
             <div className='status-icon'>
-              {progress == 100 ? (
+              {progress === 100 ? (
                 <CheckCircle2 className='check'/>
               ) : (
                 <ImageIcon className='image'/>
