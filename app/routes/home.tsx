@@ -72,18 +72,19 @@ export default function Home() {
 
       {/* HERO SECTION */}
       <section className="hero">
-        <div className="announce">
+        {/* <div className="announce">
           <div className="dot">
             <div className="pulse"></div>
           </div>
 
           <p>Introducing Spatiom 1.0</p>
-        </div>
+        </div> */}
 
-        <h1>Build Beautiful spaces at the speed if thought with Spatiom</h1>
+        <h1>
+          Transform floor plans into stunning spaces in real time.</h1>
 
         <p className="subtitle">
-          Spatiom is an AI-first design environment that helps you visualize, render, and ship architectural projects faster than ever.
+          Spatiom is an AI-powered design platform that turns architectural concepts into renders and reality in seconds.
         </p>
 
         <div className="actions">
